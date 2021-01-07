@@ -61,11 +61,11 @@ const userSchema = new mongoose.Schema({
   },
   password: {
     type: String,
-    required: [true, "Please enter last name"],
+    required: [true, "Please enter password"],
   },
   confirmPassword: {
     type: String,
-    required: [true, "Please enter last name"],
+    required: [true, "Please enter confirm Password"],
   },
 });
 let User = mongoose.model("User", userSchema);
