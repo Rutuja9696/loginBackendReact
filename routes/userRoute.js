@@ -1,15 +1,12 @@
 const express = require("express");
 
 const { signupUser } = require("../controllers/signUpUser");
-// const { addEmployees } = require("../controllers/addEmployees");
-// const { getEmployeeById } = require("../controllers/getEmployeeById");
+const { loginUser } = require("../controllers/loginUser");
 
 //middlewares
-
 const router = express.Router();
-
-// router.route("/").get();
 router.route("/signUp").post(signupUser);
-// router.route("/:empId").get(getEmployeeById);
+router.route("/login").post(loginUser);
 
+//export router
 module.exports = router;
