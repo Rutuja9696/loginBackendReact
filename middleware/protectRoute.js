@@ -3,9 +3,8 @@ const fs = require("fs");
 const path = require("path");
 const sendErrorMessage = require("../helpers/sendError");
 const AppError = require("../helpers/appErrorClass");
-// const fileName = path.join(__dirname, "..", "data", "userData.json");
-// const users = JSON.parse(fs.readFileSync(fileName, "utf-8"));
 
+//function to protect route
 const protectRoute = async (req, res, next) => {
   // extract token
   if (!req.headers.authorization) {
@@ -15,7 +14,7 @@ const protectRoute = async (req, res, next) => {
       res
     );
   }
-  // if headers are there
+  // if headers are present
   let jwtToken = req.headers.authorization.split(" ")[1];
   let decoded;
   try {
@@ -27,12 +26,13 @@ const protectRoute = async (req, res, next) => {
       res
     );
   }
+  //to check if users registered
   let { email: currentUser } = users.find((user) => {
     return user.email == decoded.email;
   });
   if (!currentUser) {
     return sendErrorMessage(
-      new AppError(401, "Unsuccesssul", "User not registered"),
+      new AppError(401, "Unsuccesssul", "User not valid"),
       req,
       res
     );
