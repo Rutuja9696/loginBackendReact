@@ -53,10 +53,10 @@ const createPasswordHash = async (req, res, next) => {
 };
 //to check if user is registered
 const isUserRegistered = (req, res, next) => {
-  console.log(req.body.email);
+  // console.log(req.body.email);
   User.findOne({ email: req.body.email })
     .then((user) => {
-      console.log("User", user);
+      // console.log("User", user);
       req.currentUser = user;
       if (!user) {
         return sendErrorMessage(
