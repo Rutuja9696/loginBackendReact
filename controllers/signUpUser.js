@@ -13,7 +13,6 @@ const signupUser = async (req, res, next) => {
     newUser.name = data.name.trim();
     newUser.email = data.email.trim();
     newUser.password = data.password.trim();
-    newUser.confirmPassword = data.confirmPassword.trim();
 
     let user = await User.find({ email: newUser.email });
     if (user.length) {
