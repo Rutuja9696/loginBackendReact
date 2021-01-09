@@ -10,6 +10,18 @@ dotenv.config({
   path: "./config.env",
 });
 
+const app = express();
+
+app.use(cors());
+app.use(cookieParser());
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use("/user/", router);
+
+// app.listen(process.env.PORT, () => {
+//   console.log(`Server running on PORT no. ${process.env.PORT}`);
+// });
+
 mongoose.connect(
   process.env.DATABASE_URL,
   {
@@ -19,20 +31,12 @@ mongoose.connect(
   },
   (err) => {
     if (err) {
-      console.log(err);
+      console.log("Connection failed.");
+      return err;
     }
     console.log("Successfully connected to mongoDB");
+    app.listen(process.env.PORT, () => {
+      console.log(`Server running on PORT no. ${process.env.PORT}`);
+    });
   }
 );
-
-const app = express();
-
-app.use(cors());
-app.use(cookieParser());
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use("/user/", router);
-
-app.listen(process.env.PORT, () => {
-  console.log(`Server running on PORT no. ${process.env.PORT}`);
-});
