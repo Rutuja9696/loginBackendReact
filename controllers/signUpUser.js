@@ -5,6 +5,7 @@ const AppError = require("../helpers/appErrorClass");
 const sendErrorMessage = require("../helpers/sendError");
 const sendResponse = require("../helpers/sendResponse");
 
+//signup function
 const signupUser = async (req, res, next) => {
   try {
     let data = req.body;
@@ -33,4 +34,5 @@ const signupUser = async (req, res, next) => {
     return sendErrorMessage(new AppError(400, "unsuccessful", err), req, res);
   }
 };
+//exporting function
 module.exports.signupUser = signupUser;
