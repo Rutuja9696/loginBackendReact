@@ -10,7 +10,7 @@ const checkRequestBody = (req, res, next) => {
   let validationArray = [];
   switch (req.url) {
     case "/signup":
-      validationArray = ["email", "password", "confirmPassword"];
+      validationArray = ["name", "email", "password", "confirmPassword"];
       break;
     case "/login":
       validationArray = ["email", "password"];
