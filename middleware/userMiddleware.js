@@ -4,8 +4,6 @@ const bcrypt = require("bcryptjs");
 const User = require("../models/signupSchema");
 const sendErrorMessage = require("../helpers/sendError");
 const AppError = require("../helpers/appErrorClass");
-// const fileName = path.join(__dirname, "..", "data", "userData.json");
-// const users = JSON.parse(fs.readFileSync(fileName, "utf-8"));
 
 //middleware
 const checkRequestBody = (req, res, next) => {
@@ -31,7 +29,7 @@ const checkConfirmPassword = (req, res, next) => {
       new AppError(
         400,
         "Unsuccessful",
-        "Confirm password & password don't match"
+        "Confirm password & password do not match."
       ),
       req,
       res
@@ -39,16 +37,6 @@ const checkConfirmPassword = (req, res, next) => {
   }
   next();
 };
-//check for duplicate email
-// const isEmailUnique = (req, res, next) => {
-//   let findUser = users.find((user) => {
-//     return user.email == req.body.email;
-//   });
-//   if (findUser) {
-//     return res.send("User already registered");
-//   }
-//   next();
-// };
 //create password hash
 const createPasswordHash = async (req, res, next) => {
   try {
@@ -69,7 +57,6 @@ const isUserRegistered = (req, res, next) => {
   User.findOne({ email: req.body.email })
     .then((user) => {
       console.log("User", user);
-      // findUser = user;
       req.currentUser = user;
       if (!user) {
         return sendErrorMessage(
@@ -89,6 +76,5 @@ const isUserRegistered = (req, res, next) => {
 module.exports.checkRequestBody = checkRequestBody;
 module.exports.isEmailValid = isEmailValid;
 module.exports.checkConfirmPassword = checkConfirmPassword;
-// module.exports.isEmailUnique = isEmailUnique;
 module.exports.createPasswordHash = createPasswordHash;
 module.exports.isUserRegistered = isUserRegistered;
