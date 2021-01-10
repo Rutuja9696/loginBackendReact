@@ -18,10 +18,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use("/user/", router);
 
-// app.listen(process.env.PORT, () => {
-//   console.log(`Server running on PORT no. ${process.env.PORT}`);
-// });
-
 mongoose.connect(
   process.env.DATABASE_URL,
   {

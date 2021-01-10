@@ -1,5 +1,3 @@
-const fs = require("fs");
-const path = require("path");
 const bcrypt = require("bcryptjs");
 const User = require("../models/signupSchema");
 const sendErrorMessage = require("../helpers/sendError");
@@ -53,10 +51,8 @@ const createPasswordHash = async (req, res, next) => {
 };
 //to check if user is registered
 const isUserRegistered = (req, res, next) => {
-  // console.log(req.body.email);
   User.findOne({ email: req.body.email })
     .then((user) => {
-      // console.log("User", user);
       req.currentUser = user;
       if (!user) {
         return sendErrorMessage(

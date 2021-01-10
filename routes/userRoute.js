@@ -10,7 +10,6 @@ const {
   createPasswordHash,
   isUserRegistered,
 } = require("../middleware/userMiddleware");
-// const protectRoute = require("../middleware/protectRoute");
 const router = express.Router();
 router
   .route("/signup")

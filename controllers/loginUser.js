@@ -7,6 +7,7 @@ const AppError = require("../helpers/appErrorClass");
 const sendErrorMessage = require("../helpers/sendError");
 const sendResponse = require("../helpers/sendResponse");
 
+//function to login in user
 const loginUser = async (req, res, next) => {
   console.log("Current User", req.currentUser);
   try {
@@ -14,7 +15,6 @@ const loginUser = async (req, res, next) => {
       req.body.password,
       req.currentUser.password
     );
-    // console.log("Result", result);
     if (!result) {
       return sendErrorMessage(
         new AppError(401, "Unsuccessful", "Password is incorrect"),
@@ -26,7 +26,6 @@ const loginUser = async (req, res, next) => {
       { email: req.currentUser.email },
       process.env.JWT_SECRET
     );
-    // console.log("Token", jwtToken);
     res.cookie("jwt", jwtToken);
     res.status(200).json({
       status: "Successful login",

@@ -1,6 +1,4 @@
 const { verifyToken } = require("../helpers/jwtAuth");
-const fs = require("fs");
-const path = require("path");
 const sendErrorMessage = require("../helpers/sendError");
 const AppError = require("../helpers/appErrorClass");
 

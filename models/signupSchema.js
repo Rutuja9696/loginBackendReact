@@ -63,10 +63,6 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please enter password"],
   },
-  // confirmPassword: {
-  //   type: String,
-  //   required: [true, "Please enter confirm Password"],
-  // },
 });
 let User = mongoose.model("User", userSchema);
 module.exports = User;
